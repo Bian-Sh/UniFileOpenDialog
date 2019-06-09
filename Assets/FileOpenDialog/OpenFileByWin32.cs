@@ -14,7 +14,7 @@ public class OpenFileByWin32 : MonoBehaviour
 
     public Text text;
 
-    public FileOpenDialog CreatDialogConig()
+    public FileOpenDialog CreatDialogConfig()
     {
         return new FileOpenDialog()
         {
@@ -33,7 +33,7 @@ public class OpenFileByWin32 : MonoBehaviour
 
     public void OpenFile()
     {
-        FileOpenDialog dialog = CreatDialogConig();
+        FileOpenDialog dialog = CreatDialogConfig();
         dialog.title = "请选择打开的文件：";
         string msg = string.Empty;
         if (FileOpenDialog.GetOpenFilePath(dialog))
@@ -48,7 +48,7 @@ public class OpenFileByWin32 : MonoBehaviour
     }
     public void SaveFile()
     {
-        FileOpenDialog dialog = CreatDialogConig();
+        FileOpenDialog dialog = CreatDialogConfig();
         dialog.title = "请选择保存的位置：";
         string msg = string.Empty;
         if (FileOpenDialog.GetSaveFilePath(dialog))
