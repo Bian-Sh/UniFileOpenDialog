@@ -22,6 +22,19 @@ FileOpenDialog/ FileSaveDialog  in Untiy . With Topmost Fuction for Windows os.
     
     Support multi file select
     
+# Installation
+
+通过 UPM 安装： Window 👉 Package Manager 👉 + 👉 Add package from git URL
+
+Install via UPM
+
+然后张贴以下内容：
+
+Then paste the following content
+
+https://github.com/Bian-Sh/UniFileOpenDialog.git?path=Packages/UniFileDialog
+
+
 
 # Reference：
 [Unity 3D OpenFileDialog / SaveFileDialog 如何置顶](https://www.jianshu.com/p/8cc34b2a7377)
