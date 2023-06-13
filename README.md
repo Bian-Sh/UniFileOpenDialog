@@ -15,7 +15,13 @@ FileOpenDialog/ FileSaveDialog  in Untiy . With Topmost Fuction for Windows os.
   And you can get the saved file's path now.
 
 * 运行时和编辑器下均可正常使用
-  can work correctly both in unity editor and unity player mode (runtime mode)
+  
+  Can work correctly both in unity editor and unity player mode (runtime mode)
+
+* 支持多文件选择
+    
+    Support multi file select
+    
 
 # Reference：
 [Unity 3D OpenFileDialog / SaveFileDialog 如何置顶](https://www.jianshu.com/p/8cc34b2a7377)

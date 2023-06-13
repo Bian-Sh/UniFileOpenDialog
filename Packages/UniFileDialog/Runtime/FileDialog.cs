@@ -58,31 +58,31 @@ namespace zFramework.IO
                 Marshal.WriteByte(filePtr, i, 0);
             }
 
-            OpenFileName openFileName = new OpenFileName();
-            openFileName.lStructSize = Marshal.SizeOf(openFileName);
-            openFileName.lpstrFilter = filter;
-            openFileName.filePtr = filePtr;
-            openFileName.nMaxFile = size;
-            openFileName.lpstrFileTitle = new string(new char[64]);
-            openFileName.nMaxFileTitle = 64;
-            openFileName.lpstrInitialDir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            openFileName.lpstrFileTitle = title;
-            openFileName.lpstrDefExt = "*.*";
-            openFileName.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_ALLOWMULTISELECT | OFN_NOCHANGEDIR;
-            openFileName.hwndOwner = UnityHWnd; //这一步将文件选择窗口置顶。
+            OpenFileName ofn = new OpenFileName();
+            ofn.lStructSize = Marshal.SizeOf(ofn);
+            ofn.lpstrFilter = filter;
+            ofn.nFilterIndex = 2;
+            ofn.filePtr = filePtr;
+            ofn.nMaxFile = size;
+            ofn.nMaxFileTitle = 256;
+            ofn.lpstrInitialDir = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            ofn.lpstrFileTitle = title;
+            ofn.lpstrDefExt = "*.*";
+            ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_ALLOWMULTISELECT | OFN_NOCHANGEDIR;
+            ofn.hwndOwner = UnityHWnd; //这一步将文件选择窗口置顶。
 
-            if (GetOpenFileName(openFileName))
+            if (GetOpenFileName(ofn))
             {
-                var file = Marshal.PtrToStringAuto(openFileName.filePtr);
+                var file = Marshal.PtrToStringAuto(ofn.filePtr);
                 while (!string.IsNullOrEmpty(file))
                 {
                     list.Add(file);
                     //转换为地址
-                    long filePointer = (long)openFileName.filePtr;
+                    long filePointer = (long)ofn.filePtr;
                     //偏移
                     filePointer += file.Length * Marshal.SystemDefaultCharSize + Marshal.SystemDefaultCharSize;
-                    openFileName.filePtr = (IntPtr)filePointer;
-                    file = Marshal.PtrToStringAuto(openFileName.filePtr);
+                    ofn.filePtr = (IntPtr)filePointer;
+                    file = Marshal.PtrToStringAuto(ofn.filePtr);
                 }
             }
 
