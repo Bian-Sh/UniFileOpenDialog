@@ -13,11 +13,7 @@ namespace zFramework.IO
             {
                 if (ptr == null || ptr == IntPtr.Zero)
                 {
-#if UNITY_EDITOR
-                    ptr = GetForegroundWindow();
-#else
                     ptr = GetUnityWindow();
-#endif
                 }
                 return ptr;
             }
@@ -94,6 +90,10 @@ namespace zFramework.IO
                 }
                 return true;
             }, IntPtr.Zero);
+            if (unityHWnd == IntPtr.Zero) //如果没找到窗口（非主线程中使用时会出现找不到unity窗口），使用 fallback 方案
+            {
+                unityHWnd = GetForegroundWindow();
+            }
             return unityHWnd;
         }
         #endregion
